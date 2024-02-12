@@ -1,0 +1,35 @@
+text.usetex: False
+text.latex.preamble: \usepackage{amsfonts}\usepackage{amsmath}
+
+font.sans-serif: Arial
+font.size:6
+
+axes.prop_cycle: cycler('color', ['000000', 'FFA500', 'B24BF3', '9ACD32','1f77b4', 'ff7f0e', '2ca02c', 'd62728', '9467bd', '8c564b', 'e377c2', '7f7f7f', 'bcbd22', '17becf'])
+
+axes.titlesize:8
+axes.labelsize:7
+axes.formatter.limits:-3,+3
+axes.formatter.use_mathtext:True
+
+axes.spines.left:   True
+axes.spines.bottom: True
+axes.spines.top:    False
+axes.spines.right:  False
+axes.autolimit_mode: data
+xtick.labelsize : 5
+ytick.labelsize : 5
+
+legend.fontsize : 7
+
+figure.frameon : False
+figure.figsize : 2,2
+figure.dpi:300
+figure.constrained_layout.use:True
+savefig.transparent:True
+
+image.aspect:auto
+image.interpolation:none
+image.cmap:plasma
+image.origin:lower
+
+hist.bins:100
