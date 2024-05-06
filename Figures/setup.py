@@ -22,7 +22,8 @@ from utils.data_and_models import (extract_data, extract_models, load_emission,
                                    load_emission_multi, load_full_traj,
                                    load_genbouts, load_LLHs, load_sequences,
                                    load_transmat, load_transmat_multi,
-                                   load_viterbi)
+                                   load_viterbi,
+load_ARTR, load_ARTR_magnet)
 
 # from utils.format_data import format_sequences
 # from utils.h5tree.hdf5_tree_viewer import h5tree_view

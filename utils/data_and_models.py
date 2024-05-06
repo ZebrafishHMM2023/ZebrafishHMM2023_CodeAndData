@@ -3,6 +3,7 @@ from pathlib import Path
 
 import h5py
 import numpy as np
+from scipy.io import loadmat
 
 
 def extract_models(path="../Models/hmms_20240125.tar.gz"):
@@ -187,3 +188,20 @@ def load_LLHs(models_path, model, temp, set="tests"):
     for path in paths:
         LLHs.append(np.loadtxt(path))
     return np.concatenate(LLHs)
+
+
+def load_ARTR(path):
+    """Load spikes and magnetization of ARTR."""
+    mat = loadmat(path, simplify_cells=True)["Dinference_corr"]
+    L = mat["leftspikesbin_data"]
+    R = mat["rightspikesbin_data"]
+    mL = L.mean(axis=1)
+    mR = R.mean(axis=1)
+
+    return mat["time"], mL, mR, L, R
+
+
+def load_ARTR_magnet(path):
+    """Load magnetization of ARTR."""
+    _, mL, mR, _, _ = load_ARTR(path)
+    return np.c_[mL,mR]
