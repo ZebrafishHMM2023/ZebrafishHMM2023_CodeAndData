@@ -24,6 +24,7 @@ venv.bak/
 
 # data to be kept localy
 NOGIT_*
+neuro.h5
 behavior_free_swimming.h5
 hmms_20240125/
 longtrajectories_20240202/

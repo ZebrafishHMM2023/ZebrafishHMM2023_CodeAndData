@@ -190,18 +190,27 @@ def load_LLHs(models_path, model, temp, set="tests"):
     return np.concatenate(LLHs)
 
 
-def load_ARTR(path):
+def ARTR_all_fish_temp(path):
+    file = h5py.File(path, "r")
+    all_fish_temp = file["fish_temp_combinations"][()]
+    file.close()
+    return all_fish_temp
+
+
+def load_ARTR(datapath, fish, temp):
     """Load spikes and magnetization of ARTR."""
-    mat = loadmat(path, simplify_cells=True)["Dinference_corr"]
-    L = mat["leftspikesbin_data"]
-    R = mat["rightspikesbin_data"]
+    file = h5py.File(datapath, "r")
+    grp = file[f"T{temp}-fish{fish}"]
+    dt = grp["dt"][()]
+    L = grp["L"][()]
+    R = grp["R"][()]
+    file.close()
     mL = L.mean(axis=1)
     mR = R.mean(axis=1)
+    return mL, mR, L, R, dt
 
-    return mat["time"], mL, mR, L, R
 
-
-def load_ARTR_magnet(path):
+def load_ARTR_magnet(datapath, fish, temp):
     """Load magnetization of ARTR."""
-    _, mL, mR, _, _ = load_ARTR(path)
-    return np.c_[mL,mR]
+    mL, mR, _, _, _ = load_ARTR(datapath, fish, temp)
+    return np.c_[mL, mR]
