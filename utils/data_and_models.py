@@ -214,3 +214,23 @@ def load_ARTR_magnet(datapath, fish, temp):
     """Load magnetization of ARTR."""
     mL, mR, _, _, _ = load_ARTR(datapath, fish, temp)
     return np.c_[mL, mR]
+
+
+def load_ARTR_viterbi(path, fish, temp):
+    """Load viterbi state sequence of ARTR."""
+    file = h5py.File(path, "r")
+    grp = file[f"T{temp}-fish{fish}"]
+    state_seq = grp["viterbi"][()]
+    file.close()
+    return state_seq
+
+
+def load_ARTR_gen(path, fish, temp):
+    """Load generated state sequence of ARTR."""
+    file = h5py.File(path, "r")
+    grp = file[f"T{temp}-fish{fish}"]
+    gen_seq = grp["gen_states"][()]
+    gen_L = grp["gen_L"][()]
+    gen_R = grp["gen_R"][()]
+    file.close()
+    return gen_seq, gen_L, gen_R

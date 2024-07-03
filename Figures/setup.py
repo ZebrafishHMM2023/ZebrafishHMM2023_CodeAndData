@@ -19,7 +19,8 @@ sys.path.append("../")
 import utils.MarkovChains as MC
 # from utils.confusion import *
 from utils.data_and_models import (ARTR_all_fish_temp, extract_data,
-                                   extract_models, load_ARTR, load_ARTR_magnet,
+                                   extract_models, load_ARTR, load_ARTR_gen,
+                                   load_ARTR_magnet, load_ARTR_viterbi,
                                    load_emission, load_emission_multi,
                                    load_full_traj, load_genbouts, load_LLHs,
                                    load_sequences, load_transmat,
@@ -37,6 +38,7 @@ extract_data("../Data/neuro.tar.gz")
 # Extracting the models
 extract_models("../Models/hmms_20240125.tar.gz")
 extract_models("../Models/longtrajectories_20240202.tar.gz")
+extract_models("../Models/hmms_ARTR_20240620.tar.gz")
 
 # Global variables
 
@@ -52,6 +54,8 @@ DTHETA_THRESH = 10
 
 ## Neuro
 nDATAPATH = Path("../Data/neuro.h5")
+nMODELPATH = Path("../Models/hmms_ARTR_20240620/")
+nOUTPATH = Path("../Models/hmms_ARTR_outputs.h5")
 ALL_ARTRs = ARTR_all_fish_temp(nDATAPATH)
 ARTR_CMAP = plt.cm.coolwarm
 COLOR_Lartr = ARTR_CMAP(0)
