@@ -234,3 +234,13 @@ def load_ARTR_gen(path, fish, temp):
     gen_R = grp["gen_R"][()]
     file.close()
     return gen_seq, gen_L, gen_R
+
+
+def load_ARTR_fields(path, fish, temp):
+    """Load the field of ARTR HMMs."""
+    name = f"artr_temperature={temp}-fish={fish}.hdf5"
+    path = path.joinpath(name)
+    file = h5py.File(path, "r")
+    h = file["h"][()]
+    file.close()
+    return h
