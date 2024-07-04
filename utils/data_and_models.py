@@ -244,3 +244,35 @@ def load_ARTR_fields(path, fish, temp):
     h = file["h"][()]
     file.close()
     return h
+
+
+def load_ARTR_dt(path, fish, temp):
+    """Load the field of ARTR HMMs."""
+    name = f"artr_temperature={temp}-fish={fish}.hdf5"
+    path = path.joinpath(name)
+    file = h5py.File(path, "r")
+    dt = file["time_unit"][()]
+    file.close()
+    return dt
+
+
+def load_ARTR_sejourn(path, fish, temp):
+    """Load the field of ARTR HMMs."""
+    name = f"artr_temperature={temp}-fish={fish}.hdf5"
+    path = path.joinpath(name)
+    file = h5py.File(path, "r")
+    stF = file["sojourn_times_F"][()]
+    stL = file["sojourn_times_L"][()]
+    stR = file["sojourn_times_R"][()]
+    file.close()
+    return stF, stL, stR
+
+
+def load_ARTR_transmat(path, fish, temp):
+    """Load the field of ARTR HMMs."""
+    name = f"artr_temperature={temp}-fish={fish}.hdf5"
+    path = path.joinpath(name)
+    file = h5py.File(path, "r")
+    T = file["transition_matrix"][()]
+    file.close()
+    return T.T

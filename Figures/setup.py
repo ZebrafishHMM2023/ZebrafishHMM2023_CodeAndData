@@ -18,14 +18,7 @@ import numpy as np
 sys.path.append("../")
 import utils.MarkovChains as MC
 # from utils.confusion import *
-from utils.data_and_models import (ARTR_all_fish_temp, extract_data,
-                                   extract_models, load_ARTR, load_ARTR_fields,
-                                   load_ARTR_gen, load_ARTR_magnet,
-                                   load_ARTR_viterbi, load_emission,
-                                   load_emission_multi, load_full_traj,
-                                   load_genbouts, load_LLHs, load_sequences,
-                                   load_transmat, load_transmat_multi,
-                                   load_viterbi)
+from utils.data_and_models import *
 
 # from utils.format_data import format_sequences
 # from utils.h5tree.hdf5_tree_viewer import h5tree_view
