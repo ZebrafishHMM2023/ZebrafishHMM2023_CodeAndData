@@ -39,6 +39,7 @@ extract_models("../Models/hmms_ARTR_20240620.tar.gz")
 ## Behavior
 bDATAPATH = Path("../Data/behavior_free_swimming.h5")
 bMODELPATH = Path("../Models/hmms_20240125/")
+blMODELPATH = "../Models/longtrajectories_20240202/"
 DTHETA_LIM = 100
 DTHETA_CMAP = cmc.vanimo
 FLR_colors = DTHETA_CMAP([0.5, 0.9, 0.1])
