@@ -1,9 +1,9 @@
 # Structure and individuality of navigation in zebrafish larvae
 
 This repository contains the data and code to reproduce the figures from :   
-*Mattéo Dommanget-Kott, Jorge Fernandez-De-Cossio-Diaz, Monica Coraggioso, Volker Bormuth, Rémi Monasson, Georges Debrégeas, and Simona Cocco*. ‘**Structure and Individuality of Navigation in Zebrafish Larvae**’, February 2024. [https://hal.science/hal-04445557](https://hal.science/hal-04445557).
+*Mattéo Dommanget-Kott, Jorge Fernandez-De-Cossio-Diaz, Monica Coraggioso, Volker Bormuth, Rémi Monasson, Georges Debrégeas, and Simona Cocco*. ‘**Linking brain and behavior states in zebrafish larvae locomotion using Hidden1 Markov Model**’, Octobre 2024. (previous version at [https://hal.science/hal-04445557](https://hal.science/hal-04445557) ).
 
-![Fig2c](Figures/panels/Fig2/example_labeling_part2.svg)
+![Fig2c](https://raw.githubusercontent.com/ZebrafishHMM2023/ZebrafishHMM2023_CodeAndData/refs/heads/main/Figures/panels/Fig2/example_labeling_part2.svg)
 
 ## Layout of this Repository
 
@@ -26,14 +26,17 @@ This repo is structured as follows :
 │   │   ├── 📁Fig2                         │   │   ├── 📁 storing panels for Fig2
 │   │   │   ├── 📊panel_name.svg           │   │   │   ├── 📊 ...
 │   │   │   ├── 📊...                      │   │   │   ├── 📊 ...
-│   │   ...
+│   │   ...                                │
 ├── 📁Data                                 ├── 📁 storing datasets
 │   ├── 💾behavior_free_swimming.tar.gz    │   ├── 💾 freely swimming trajectories (multiple fish)
+│   ├── 💾neuro.tar.gz                     │   ├── 💾 neuronal recording of the ARTR (multiple fish)
 ├── 📁Models                               ├── 📁 storing HMM models and associated info
 │   ├── 💾hmms_20240125.tar.gz             │   ├── 💾 models for multi-fish swiming data
+│   ├── 💾hmms_ARTR_20240620.tar.gz        │   ├── 💾 models for the single fish neuronal data
 │   ├── 💾longtrajectories_20240202.tar.gz │   ├── 💾 models for single-fish swiming data
 │   ├── 💾mixtures.tar.gz                  │   ├── 💾 mixture models
 ├── 📁utils                                ├── 📁 usefull functions and routines
+│   ├── 📄artr_hmm_sampler                 │   ├── 📄 routine to generate random samples from the neuronal models
 │   ├── 📄data_and_models.py               │   ├── 📄 functions for loading data + models related stuff
 │   ├── 📄MarkovChains.py                  │   ├── 📄 Markov Chains related functions
 │   ├── 📄misc.py                          │   ├── 📄 random bits of usefull stuff
@@ -45,11 +48,16 @@ This repo is structured as follows :
 
 ## Data availability
 
-The data comes from the paper [Thermal modulation of Zebrafish exploratory statistics reveals constraints on individual behavioral variability, Le Goc et al. 2021, BMC Biol](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-021-01126-w).  
+The behavioral data comes from the paper [Thermal modulation of Zebrafish exploratory statistics reveals constraints on individual behavioral variability, Le Goc et al. 2021, BMC Biol](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-021-01126-w).  
 The original dataset can be directly downloaded [here](https://datadryad.org/stash/dataset/doi:10.5061/dryad.3r2280ggw).
 
-A re-organised version of this dataset is included in this repo in archive at `./Data/behavior_free_swimming.tar.gz`.  
-To load and view the content of this file from this repository you can use :
+The neuronal data comes from the paper [Emergence of time persistence in a data-driven neural network model, Wolf, Le Goc et al. 2023, eLife](https://elifesciences.org/articles/79541).  
+The original dataset can be directly downloaded [here](https://gin.g-node.org/Debregeas/ZF_ARTR_thermo).
+
+Re-organised versions of these datasets are included in this repo as archives at `./Data/behavior_free_swimming.tar.gz`, and `./Data/neuro.tar.gz`.  
+
+
+To load and view the content of the behavioral file you can use :
 
 ```python
 from utils.data_and_models import extract_data
@@ -87,7 +95,7 @@ dthetas = load_sequences(
 
 ## Hidden Markov Models
 Hidden Markov Models were computed from a custom implementation which can be found at [here](https://github.com/ZebrafishHMM2023/ZebrafishHMM2023.jl).  
-All models infered from the data and used in this work are included in the present repo at `./Models/hmms_20240125.tar.gz` (for multi-fish experiements), and `./Models/longtrajectories_20240202.tar.gz` (for single-fish experiments).
+All models infered from the data and used in this work are included in the present repo in `./Models/hmms_20240125.tar.gz` (for multi-fish behavioral experiements), `./Models/longtrajectories_20240202.tar.gz` (for single-fish behavioral experiments), and `./Models/hmms_ARTR_20240620.tar.gz` (for single fish neuroal experiments).
 
 
 ## Tutorial
