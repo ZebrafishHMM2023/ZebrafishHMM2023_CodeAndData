@@ -27,6 +27,7 @@ from utils.data_and_models import *
 
 # Extracting the data
 extract_data("../Data/behavior_free_swimming.tar.gz")
+extract_data("../Data/behavior_single_fish.tar.gz")
 extract_data("../Data/neuro.tar.gz")
 
 # Extracting the models
@@ -34,10 +35,14 @@ extract_models("../Models/hmms_20240125.tar.gz")
 extract_models("../Models/longtrajectories_20240202.tar.gz")
 extract_models("../Models/hmms_ARTR_20240620.tar.gz")
 
+# Extracting others
+extract_data("../Data/generated_neuro_MSR.tar.gz")
+
 # Global variables
 
 ## Behavior
 bDATAPATH = Path("../Data/behavior_free_swimming.h5")
+blDATAPATH = Path("../Data/behavior_single_fish.h5")
 bMODELPATH = Path("../Models/hmms_20240125/")
 blMODELPATH = "../Models/longtrajectories_20240202/"
 DTHETA_LIM = 100
@@ -51,6 +56,7 @@ DTHETA_THRESH = 10
 nDATAPATH = Path("../Data/neuro.h5")
 nMODELPATH = Path("../Models/hmms_ARTR_20240620/")
 nOUTPATH = Path("../Models/hmms_ARTR_outputs.h5")
+nMSRPATH = Path("../Data/generated_neuro_MSR/")
 ALL_ARTRs = ARTR_all_fish_temp(nDATAPATH)
 ARTR_CMAP = plt.cm.coolwarm
 COLOR_Lartr = ARTR_CMAP(0)

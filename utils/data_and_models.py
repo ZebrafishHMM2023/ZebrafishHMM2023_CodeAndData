@@ -276,3 +276,59 @@ def load_ARTR_transmat(path, fish, temp):
     T = file["transition_matrix"][()]
     file.close()
     return T.T
+
+
+def load_genbehavior(path, temp):
+    filepath = path.joinpath(f"temperature={temp}.csv")
+    x = np.loadtxt(filepath, skiprows=1, delimiter=",")
+    bangle, dt, dist, state = x.T
+    return bangle, dt, dist, (state-1).astype(np.int_)    
+    
+def load_behavior(path, temp):
+    file = h5py.File(path, "r")
+    grp = file[f"behaviour/{temp}"]
+    bangle = format_sequences(grp["dtheta"][()])
+    dist = format_sequences(grp["displacements"][()])
+    dt = format_sequences(grp["interboutintervals"][()])
+    file.close()
+    return bangle, dt, dist
+
+def loadlong_sequences(path, fish):
+    """Load long reorientation sequences from hdf5 file for a specific fish at 26°C.
+
+    Parameters :
+    ------------
+    :path: str
+        path to the hdf5 file
+    :fish: int
+        fish number
+
+    Return :
+    --------
+    :X: list of 1d arrays (N_sequences) (n_bouts_per_sequence,)
+        list of sequences. Sequence have different number of bouts.
+
+    """
+    file = h5py.File(path, "r")
+    X = file[f"/behavior/fish{fish}/dtheta"][:]
+    file.close()
+    return format_sequences(X)
+
+def load_genneuro(path, fish, temp):
+    paths = sorted(path.glob(f"temperature={temp}-fish={fish}-rep=*.csv"))
+    #print(paths)
+    BANGLES, DISTS, DTS, STATES = [], [], [], []
+    for path in paths:
+        x = np.loadtxt(path, skiprows=1, delimiter=",")
+        bangle, dt, dist, state = x.T
+        BANGLES.append(bangle)
+        DISTS.append(dist)
+        DTS.append(dt)
+        STATES.append((state-1).astype(np.int_))
+    #return BANGLES, DISTS, DTS, STATES
+    return BANGLES, DTS, DISTS, 
+
+def load_neuro_MSR(path, fish, temp):
+    path = path.joinpath(f"msr-N-HMM-gen-temperature={temp}-fish={fish}.txt")
+    msr = np.loadtxt(path)
+    return msr[:,1]
