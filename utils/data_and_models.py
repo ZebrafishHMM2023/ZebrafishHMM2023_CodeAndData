@@ -326,7 +326,7 @@ def load_genneuro(path, fish, temp):
         DTS.append(dt)
         STATES.append((state-1).astype(np.int_))
     #return BANGLES, DISTS, DTS, STATES
-    return BANGLES, DTS, DISTS, 
+    return BANGLES, DTS, DISTS, STATES
 
 def load_neuro_MSR(path, fish, temp):
     path = path.joinpath(f"msr-N-HMM-gen-temperature={temp}-fish={fish}.txt")

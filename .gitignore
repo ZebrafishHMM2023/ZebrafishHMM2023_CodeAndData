@@ -34,3 +34,4 @@ mixtures.h5
 hmms_ARTR_outputs.h5
 generated_neuro_MSR/
 gen_behavior/
+gen_neuro/

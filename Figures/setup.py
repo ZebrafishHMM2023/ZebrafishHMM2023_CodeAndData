@@ -35,6 +35,7 @@ extract_models("../Models/hmms_20240125.tar.gz")
 extract_models("../Models/longtrajectories_20240202.tar.gz")
 extract_models("../Models/hmms_ARTR_20240620.tar.gz")
 extract_models("../Models/gen_behavior.tar.gz")
+extract_models("../Models/gen_neuro.tar.gz")
 
 
 # Extracting others
@@ -59,6 +60,7 @@ DTHETA_THRESH = 10
 nDATAPATH = Path("../Data/neuro.h5")
 nMODELPATH = Path("../Models/hmms_ARTR_20240620/")
 nOUTPATH = Path("../Models/hmms_ARTR_outputs.h5")
+nGENPATH = Path("../Models/gen_neuro/")
 nMSRPATH = Path("../Data/generated_neuro_MSR/")
 ALL_ARTRs = ARTR_all_fish_temp(nDATAPATH)
 ARTR_CMAP = plt.cm.coolwarm
