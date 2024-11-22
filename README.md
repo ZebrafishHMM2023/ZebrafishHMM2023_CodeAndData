@@ -1,7 +1,7 @@
 # Structure and individuality of navigation in zebrafish larvae
 
 This repository contains the data and code to reproduce the figures from :   
-*Mattéo Dommanget-Kott, Jorge Fernandez-De-Cossio-Diaz, Monica Coraggioso, Volker Bormuth, Rémi Monasson, Georges Debrégeas, and Simona Cocco*. ‘**Linking brain and behavior states in zebrafish larvae locomotion using Hidden1 Markov Model**’, Octobre 2024. (previous version at [https://hal.science/hal-04445557](https://hal.science/hal-04445557) ).
+*Mattéo Dommanget-Kott, Jorge Fernandez-De-Cossio-Diaz, Monica Coraggioso, Volker Bormuth, Rémi Monasson, Georges Debrégeas, and Simona Cocco*. ‘**Linking brain and behavior states in zebrafish larvae locomotion using Hidden Markov Model**’, November 2024, preprint. (previous version at [https://hal.science/hal-04445557](https://hal.science/hal-04445557) ).
 
 ![Fig2c](https://raw.githubusercontent.com/ZebrafishHMM2023/ZebrafishHMM2023_CodeAndData/refs/heads/main/Figures/panels/Fig2/example_labeling_part2.svg)
 
@@ -18,6 +18,7 @@ This repo is structured as follows :
 │   ├── 📔Fig3.ipynb                       │   ├── 📔 ipython notebook to make panels of Fig3
 │   ├── 📔Fig4.ipynb                       │   ├── 📔 ipython notebook to make panels of Fig4
 │   ├── 📔Fig5.ipynb                       │   ├── 📔 ipython notebook to make panels of Fig5
+│   ├── 📔Fig6.ipynb                       │   ├── 📔 ipython notebook to make panels of Fig6
 │   ├── 📔MixtureModel.ipynb               │   ├── 📔 Julia ipython notebook to compute mixture models of Fig2
 │   ├── 📁panels                           │   ├── 📁 storing figure panels in svg format
 │   │   ├── 📁Fig1                         │   │   ├── 📁 storing panels for Fig1
@@ -29,16 +30,21 @@ This repo is structured as follows :
 │   │   ...                                │
 ├── 📁Data                                 ├── 📁 storing datasets
 │   ├── 💾behavior_free_swimming.tar.gz    │   ├── 💾 freely swimming trajectories (multiple fish)
+│   ├── 💾behavior_single_fish.tar.gz      │   ├── 💾 freely swimming trajectories (single fish)
 │   ├── 💾neuro.tar.gz                     │   ├── 💾 neuronal recording of the ARTR (multiple fish)
+│   ├── 💾generated_neuro_MSR.tar.gz       │   ├── 💾 MSR from generated trajectories from neural data
 ├── 📁Models                               ├── 📁 storing HMM models and associated info
 │   ├── 💾hmms_20240125.tar.gz             │   ├── 💾 models for multi-fish swiming data
 │   ├── 💾hmms_ARTR_20240620.tar.gz        │   ├── 💾 models for the single fish neuronal data
 │   ├── 💾longtrajectories_20240202.tar.gz │   ├── 💾 models for single-fish swiming data
 │   ├── 💾mixtures.tar.gz                  │   ├── 💾 mixture models
+│   ├── 💾gen_behavior.tar.gz              │   ├── 💾 HMM generated behavior
+│   ├── 💾gen_neuro.tar.gz                 │   ├── 💾 HMM generated behavior from neural HMM
 ├── 📁utils                                ├── 📁 usefull functions and routines
 │   ├── 📄artr_hmm_sampler                 │   ├── 📄 routine to generate random samples from the neuronal models
 │   ├── 📄data_and_models.py               │   ├── 📄 functions for loading data + models related stuff
 │   ├── 📄MarkovChains.py                  │   ├── 📄 Markov Chains related functions
+│   ├── 📄MeanSquaredReorientation.py      │   ├── 📄 functions to compute the MSR
 │   ├── 📄misc.py                          │   ├── 📄 random bits of usefull stuff
 ├── 📄style.mplstyle                       ├── 📄 matplotlib style
 ├── 📄README.md                            ├── 📄 the repo readme
@@ -94,11 +100,10 @@ dthetas = load_sequences(
 ```
 
 ## Hidden Markov Models
-Hidden Markov Models were computed from a custom implementation which can be found at [here](https://github.com/ZebrafishHMM2023/ZebrafishHMM2023.jl).  
-All models infered from the data and used in this work are included in the present repo in `./Models/hmms_20240125.tar.gz` (for multi-fish behavioral experiements), `./Models/longtrajectories_20240202.tar.gz` (for single-fish behavioral experiments), and `./Models/hmms_ARTR_20240620.tar.gz` (for single fish neuroal experiments).
+Hidden Markov Models were computed from a custom implementation which can be found at [here](https://github.com/ZebrafishHMM2023/ZebrafishHMM2023.jl/tree/bioRxiv).  
+All models infered from the data and used in this work are included in the present repo in `./Models/hmms_20240125.tar.gz` (for multi-fish behavioral experiements), `./Models/longtrajectories_20240202.tar.gz` (for single-fish behavioral experiments), and `./Models/hmms_ARTR_20240620.tar.gz` (for single fish neuroal experiments), and `.Models/hmms_ARTR_20240620.tar.gz` (for neuronal ARTR data).
 
 
 ## Tutorial
 
 - LJP : [tutorial with holes](https://github.com/EmeEmu/IBIO-Banyuls2023-Python/blob/main/day4_HMMs.ipynb), [solution](https://github.com/EmeEmu/IBIO-Banyuls2023-Python/blob/main/corrections/day4_HMMs_correction.ipynb)
-- ENS : ?????
