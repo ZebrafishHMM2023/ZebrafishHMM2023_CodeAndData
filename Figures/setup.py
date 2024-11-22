@@ -34,6 +34,8 @@ extract_data("../Data/neuro.tar.gz")
 extract_models("../Models/hmms_20240125.tar.gz")
 extract_models("../Models/longtrajectories_20240202.tar.gz")
 extract_models("../Models/hmms_ARTR_20240620.tar.gz")
+extract_models("../Models/gen_behavior.tar.gz")
+
 
 # Extracting others
 extract_data("../Data/generated_neuro_MSR.tar.gz")
@@ -44,7 +46,8 @@ extract_data("../Data/generated_neuro_MSR.tar.gz")
 bDATAPATH = Path("../Data/behavior_free_swimming.h5")
 blDATAPATH = Path("../Data/behavior_single_fish.h5")
 bMODELPATH = Path("../Models/hmms_20240125/")
-blMODELPATH = "../Models/longtrajectories_20240202/"
+blMODELPATH = Path("../Models/longtrajectories_20240202/")
+bGENPATH = Path("../Models/gen_behavior/")
 DTHETA_LIM = 100
 DTHETA_CMAP = cmc.vanimo
 FLR_colors = DTHETA_CMAP([0.5, 0.9, 0.1])
